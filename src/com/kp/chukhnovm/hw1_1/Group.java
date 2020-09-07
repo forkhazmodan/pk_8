@@ -22,6 +22,7 @@ public class Group {
         ArrayList<Student> buffer = new ArrayList<>();
 
         for (Student student : this.students) {
+            if(student == null) continue;
             if (student.name.matches(".*\\b" + lastName + "\\b")) {
                 buffer.add(student);
             }
