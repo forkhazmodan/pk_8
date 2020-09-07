@@ -1,11 +1,9 @@
-package com.kp.chukhnovm.hw1_1;
+package com.kp.chukhnovm.hw3_1;
 
-import com.kp.chukhnovm.hw1_1.Enums.Gender;
-import com.kp.chukhnovm.hw1_1.Exceptions.GroupDuplicateStudentException;
-import com.kp.chukhnovm.hw1_1.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw3_1.Enums.Gender;
+import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
+import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 

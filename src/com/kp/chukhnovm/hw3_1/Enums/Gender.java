@@ -1,4 +1,4 @@
-package com.kp.chukhnovm.hw1_1.Enums;
+package com.kp.chukhnovm.hw3_1.Enums;
 
 public enum Gender {
     MALE("Male"), FEMALE("Female");

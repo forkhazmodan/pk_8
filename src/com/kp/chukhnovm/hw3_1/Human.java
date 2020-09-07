@@ -1,6 +1,6 @@
-package com.kp.chukhnovm.hw1_1;
+package com.kp.chukhnovm.hw3_1;
 
-import com.kp.chukhnovm.hw1_1.Enums.Gender;
+import com.kp.chukhnovm.hw3_1.Enums.Gender;
 
 import java.util.Date;
 
