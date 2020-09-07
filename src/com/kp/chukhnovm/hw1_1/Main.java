@@ -47,5 +47,8 @@ public class Main {
         for (Student student: searchResult) {
             System.out.println(student);
         }
+
+        group.removeStudent(s1);
+        System.out.println(group.toString());
     }
 }

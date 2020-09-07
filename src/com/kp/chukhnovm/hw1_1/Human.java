@@ -67,6 +67,7 @@ public class Human implements Comparable<Human> {
 
     @Override
     public int compareTo(Human o) {
-        return this.name.compareTo(o.name);
+        if(o == null) return -1;
+        return name.compareTo(o.name);
     }
 }
