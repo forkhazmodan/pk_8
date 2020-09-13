@@ -1,5 +1,6 @@
 package com.kp.chukhnovm.hw3_1;
 
+import com.kp.chukhnovm.hw3_1.Directors.ScannerDirector;
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
@@ -10,6 +11,51 @@ import java.util.GregorianCalendar;
 public class Main {
 
     public static void main(String[] args) {
+        Main.hw4();
+//        Main.hw3();
+    }
+
+    public static void hw4() {
+        ScannerDirector scDir = new ScannerDirector();
+
+        Student[] students = {
+                // Create student from scanner
+                scDir.createStudent(),
+                new Student("Valentyn Test6", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
+                new Student("Vladislav Test7", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+                new Student("Andrew Test1", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+                new Student("John Test2", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
+                new Student("Peter Test3", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+                new Student("Lesya Test4", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
+                new Student("Petro Test8", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
+                new Student("Tesla Test9", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+                new Student("Rocket Test10", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+
+        };
+
+        try{
+            Group group = new Group(students);
+            Student[] studentsArray = group.sortByLastName();
+            Student[] militia = group.getMilitia();
+
+            for (Student student: studentsArray) {
+                System.out.println(student);
+            }
+
+            System.out.println("Militia:");
+
+            for (Student student: militia) {
+                System.out.println(student);
+            }
+
+        } catch (GroupFulFilledException e) {
+            System.err.println(e.getMessage());
+        }
+
+        scDir.getSc().close();
+    }
+
+    public static void hw3() {
 
         Student s1 = new Student("Andrew Test1", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
         Student s2 = new Student("John Test2", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
@@ -25,9 +71,9 @@ public class Main {
 
         Group group = new Group();
         int index = 0;
-        for (Student student : new Student[] {  s1, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11 }) {
+        for (Student student : new Student[]{s1, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11}) {
 
-            try{
+            try {
                 System.out.printf("\nTry add %s student", ++index);
                 group.setStudent(student);
                 System.out.printf(" => %s", "Success");
@@ -42,7 +88,7 @@ public class Main {
         System.out.println("Searching by last name:");
         Student[] searchResult = group.searchStudent("Test1");
 
-        for (Student student: searchResult) {
+        for (Student student : searchResult) {
             System.out.println(student);
         }
 

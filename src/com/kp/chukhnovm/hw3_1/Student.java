@@ -2,20 +2,19 @@ package com.kp.chukhnovm.hw3_1;
 
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
 
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Student extends Human {
 
     private String documentId;
 
     public Student() {
+        this.generateDocumentId();
     }
 
     public Student(String name, Date birthDay, Gender gender) {
         super(name, birthDay, gender);
-        this.documentId = UUID.randomUUID().toString();
+        this.generateDocumentId();
     }
 
     public String getDocumentId() {
@@ -24,6 +23,10 @@ public class Student extends Human {
 
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
+    }
+
+    private void generateDocumentId() {
+        this.setDocumentId(UUID.randomUUID().toString());
     }
 
     @Override

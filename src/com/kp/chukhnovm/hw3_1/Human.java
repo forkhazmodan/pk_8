@@ -2,6 +2,9 @@ package com.kp.chukhnovm.hw3_1;
 
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Human implements Comparable<Human> {
@@ -55,6 +58,17 @@ public class Human implements Comparable<Human> {
         return d1 == null || d2 == null
                 ? 0
                 : (d2.getTime() - d1.getTime()) / (24 * 60 * 60 * 1000);
+    }
+
+    /**
+     * Get age in days
+     * @return Int
+     */
+    public long getAgeInYears() {
+        LocalDate bd = this.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate now = LocalDate.now();
+
+       return Period.between(bd, now).getYears();
     }
 
     @Override
