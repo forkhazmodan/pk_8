@@ -2,6 +2,9 @@ package com.kp.chukhnovm.hw3_1;
 
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -30,6 +33,12 @@ public class Human implements Comparable<Human> {
         this.birthDay = birthDay;
     }
 
+    public void setBirthDay(String birthDay) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        Date date = df.parse(birthDay);
+        this.setBirthDay(date);
+    }
+
     public String getName() {
         return name;
     }
@@ -38,12 +47,21 @@ public class Human implements Comparable<Human> {
         return this.birthDay;
     }
 
+    public String getBirthday(String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        return df.format(this.birthDay);
+    }
+
     public Gender getGender() {
         return gender;
     }
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = Gender.valueOf(gender.toUpperCase());
     }
 
     /**

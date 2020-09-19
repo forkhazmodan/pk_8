@@ -4,6 +4,7 @@ import com.kp.chukhnovm.hw3_1.Directors.ScannerDirector;
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw3_1.Services.GroupService;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -11,8 +12,12 @@ import java.util.GregorianCalendar;
 public class Main {
 
     public static void main(String[] args) {
-        Main.hw4();
-//        Main.hw3();
+        Main.hw5();
+    }
+
+    public static void hw5() {
+        Group group = GroupService.exportGroup("import.csv");
+        GroupService.importGroup(group, String.format("export-%d.csv", System.currentTimeMillis()));
     }
 
     public static void hw4() {
@@ -48,9 +53,13 @@ public class Main {
                 System.out.println(student);
             }
 
+            group.removeStudent(null);
+
         } catch (GroupFulFilledException e) {
             System.err.println(e.getMessage());
         }
+
+
 
         scDir.getSc().close();
     }

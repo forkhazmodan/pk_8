@@ -16,7 +16,10 @@ public class ScannerDirector {
 
     public Student createStudent() {
 
-        builder.setStudent(new Student());
+        Student student = new Student();
+        student.generateDocumentId();
+
+        builder.setStudent(student);
         builder.setName();
         builder.setBirthDay();
         builder.setGender();

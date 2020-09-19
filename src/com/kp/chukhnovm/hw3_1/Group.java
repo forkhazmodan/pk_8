@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
-
 public class Group implements Voenkom {
 
-    private Student[] students = new Student[10];
+    private final int maxLength = 10;
+
+    private Student[] students = new Student[maxLength];
 
     public Group() {
     }
@@ -26,11 +26,12 @@ public class Group implements Voenkom {
     }
 
     public void setStudents(Student[] students) throws GroupFulFilledException {
-        if (students.length > 10) {
+        if (students.length > maxLength) {
 
             String message = String.format(
-                    "You try create group with %s students. Group cannot carry more than 10 students.",
-                    students.length
+                    "You try create group with %s students. Group cannot carry more than %s students.",
+                    students.length,
+                    maxLength
             );
 
             throw new GroupFulFilledException(message);
@@ -40,7 +41,24 @@ public class Group implements Voenkom {
     }
 
     public Student[] getStudents() {
-        return this.students;
+
+        int resultLength = 0;
+        Student[] result;
+
+        // Filter from nulls before sort
+        for (Student student: this.students) {
+            if(student != null) resultLength++;
+        }
+
+        result = new Student[resultLength];
+
+        for (int i = 0; i < this.students.length ; i++) {
+            if(this.students[i] != null) result[i] = this.students[i];
+        }
+
+        Arrays.sort(result);
+
+        return result;
     }
 
     public Student[] searchStudent(String lastName) {
@@ -133,11 +151,9 @@ public class Group implements Voenkom {
     public String toString() {
         // Sort students by name
         //TODO: implement selection sorting
-        Student[] studentSortedArray = this.students;
-        Arrays.sort(studentSortedArray);
 
         StringBuilder strB = new StringBuilder();
-        for (Student student : studentSortedArray) {
+        for (Student student : this.getStudents()) {
             strB.append("\n");
             strB.append(student);
         }
@@ -148,5 +164,4 @@ public class Group implements Voenkom {
                 "students=[" + studentsString + "]" +
                 '}';
     }
-
 }
