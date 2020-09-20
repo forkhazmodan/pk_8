@@ -19,12 +19,24 @@ public class Group implements Voenkom, CsvCompatible {
 
     private Student[] students = new Student[maxLength];
 
+    /*
+    |--------------------------------------------------------------------------
+    | CONSTRUCTORS
+    |--------------------------------------------------------------------------
+    */
+
     public Group() {
     }
 
     public Group(Student[] students) throws GroupFulFilledException {
         this.setStudents(students);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | GETTERS & SETTERS
+    |--------------------------------------------------------------------------
+    */
 
     public void setStudents(Student[] students) throws GroupFulFilledException {
         if (students.length > maxLength) {
@@ -47,19 +59,41 @@ public class Group implements Voenkom, CsvCompatible {
         Student[] result;
 
         // Filter from nulls before sort
-        for (Student student: this.students) {
-            if(student != null) resultLength++;
+        for (Student student : this.students) {
+            if (student != null) resultLength++;
         }
 
         result = new Student[resultLength];
 
-        for (int i = 0; i < this.students.length ; i++) {
-            if(this.students[i] != null) result[i] = this.students[i];
+        for (int i = 0; i < this.students.length; i++) {
+            if (this.students[i] != null) result[i] = this.students[i];
         }
 
         Arrays.sort(result);
 
         return result;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | METHODS
+    |--------------------------------------------------------------------------
+    */
+
+    public void setStudent(Student student) throws GroupFulFilledException, GroupDuplicateStudentException {
+
+        for (int i = 0; i < this.students.length; i++) {
+            if (this.students[i] == null) {
+                this.students[i] = student;
+                return;
+            } else if (this.students[i].equals(student)) {
+                // Check if user already exists in group.
+                throw new GroupDuplicateStudentException("Such student already exists");
+            }
+        }
+
+        // If student was not added it means group already fulfilled
+        throw new GroupFulFilledException("The group is full.");
     }
 
     public Student[] searchStudent(String lastName) {
@@ -78,22 +112,6 @@ public class Group implements Voenkom, CsvCompatible {
         return buffer.toArray(searchResult);
     }
 
-    public void setStudent(Student student) throws GroupFulFilledException, GroupDuplicateStudentException {
-
-        for (int i = 0; i < this.students.length; i++) {
-            if (this.students[i] == null) {
-                this.students[i] = student;
-                return;
-            } else if (this.students[i].equals(student)) {
-                // Check if user already exists in group.
-                throw new GroupDuplicateStudentException("Such student already exists");
-            }
-        }
-
-        // If student was not added it means group already fulfilled
-        throw new GroupFulFilledException("The group is full.");
-    }
-
     public void removeStudent(Student student) {
         for (int i = 0; i < this.students.length; i++) {
             if (this.students[i].equals(student)) {
@@ -102,16 +120,16 @@ public class Group implements Voenkom, CsvCompatible {
         }
     }
 
-    public Student[] sortByLastName(){
+    public Student[] sortByLastName() {
         return this.sortByLastName(SortOrder.ASC);
     }
 
-    public Student[] sortByLastName(SortOrder order){
+    public Student[] sortByLastName(SortOrder order) {
 
         Student[] students = this.students;
         Comparator comparator = new NameComparator();
 
-        if(order.equals(SortOrder.DESC)) {
+        if (order.equals(SortOrder.DESC)) {
             Arrays.sort(students, comparator.reversed());
         } else {
             Arrays.sort(students, comparator);
@@ -125,13 +143,13 @@ public class Group implements Voenkom, CsvCompatible {
 
         IsMilita isMilitia = (Human h) -> {
             return h != null &&
-                h.gender.equals(Gender.MALE) &&
-                h.getAgeInYears() >= 18;
+                    h.gender.equals(Gender.MALE) &&
+                    h.getAgeInYears() >= 18;
         };
 
         int i = 0;
-        for (Student student: this.getStudents()) {
-            if(isMilitia.check(student)) {
+        for (Student student : this.getStudents()) {
+            if (isMilitia.check(student)) {
                 ++i;
             }
         }
@@ -139,13 +157,23 @@ public class Group implements Voenkom, CsvCompatible {
         Student[] militia = new Student[i];
 
         int j = 0;
-        for (Student student: this.getStudents()) {
-            if(isMilitia.check(student)) {
+        for (Student student : this.getStudents()) {
+            if (isMilitia.check(student)) {
                 militia[j++] = student;
             }
         }
 
         return militia;
+    }
+
+    public String toCSVString() {
+        StringBuilder strB = new StringBuilder();
+        for (CsvCompatible student : this.getStudents()) {
+            strB.append(student.toCSVString());
+            strB.append("\n");
+        }
+
+        return strB.toString();
     }
 
     @Override
@@ -166,13 +194,4 @@ public class Group implements Voenkom, CsvCompatible {
                 '}';
     }
 
-    public String toCSVString() {
-        StringBuilder strB = new StringBuilder();
-        for (CsvCompatible student : this.getStudents()) {
-            strB.append(student.toCSVString());
-            strB.append("\n");
-        }
-
-        return strB.toString();
-    }
 }
