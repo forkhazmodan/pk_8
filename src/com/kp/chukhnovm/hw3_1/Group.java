@@ -5,6 +5,7 @@ import com.kp.chukhnovm.hw3_1.Enums.Gender;
 import com.kp.chukhnovm.hw3_1.Enums.SortOrder;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
 import com.kp.chukhnovm.hw3_1.Interfaces.IsMilita;
 import com.kp.chukhnovm.hw3_1.Interfaces.Voenkom;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Group implements Voenkom {
+public class Group implements Voenkom, CsvCompatible {
 
     private final int maxLength = 10;
 
@@ -163,5 +164,15 @@ public class Group implements Voenkom {
         return "Group{" +
                 "students=[" + studentsString + "]" +
                 '}';
+    }
+
+    public String toCSVString() {
+        StringBuilder strB = new StringBuilder();
+        for (CsvCompatible student : this.getStudents()) {
+            strB.append(student.toCSVString());
+            strB.append("\n");
+        }
+
+        return strB.toString();
     }
 }

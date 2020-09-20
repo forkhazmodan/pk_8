@@ -1,10 +1,11 @@
 package com.kp.chukhnovm.hw3_1;
 
 import com.kp.chukhnovm.hw3_1.Enums.Gender;
+import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
 
 import java.util.*;
 
-public class Student extends Human {
+public class Student extends Human implements CsvCompatible {
 
     private String documentId;
 

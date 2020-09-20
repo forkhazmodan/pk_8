@@ -4,6 +4,7 @@ import com.kp.chukhnovm.hw3_1.Enums.Gender;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
 import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
 import com.kp.chukhnovm.hw3_1.Group;
+import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
 import com.kp.chukhnovm.hw3_1.Student;
 
 import java.io.*;
@@ -53,7 +54,7 @@ public class GroupService {
         return group;
     }
 
-    public static void importGroup(Group group, String targetFilePath) {
+    public static void importGroup(CsvCompatible canCsv, String targetFilePath) {
 
         File f = new File(targetFilePath);
 
@@ -61,10 +62,8 @@ public class GroupService {
                 new File(targetFilePath),
                 f.exists()
         ))) {
-            for (Student student : group.getStudents()) {
-                String studentCSVRow = student.toCSVString();
-                a.println(studentCSVRow);
-            }
+
+            a.println(canCsv.toCSVString());
 
         } catch (FileNotFoundException e) {
             System.err.println("ERROR FILE WRITE");
