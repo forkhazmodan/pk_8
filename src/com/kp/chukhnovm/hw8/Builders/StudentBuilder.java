@@ -1,7 +1,7 @@
-package com.kp.chukhnovm.hw3_1.Builders;
+package com.kp.chukhnovm.hw8.Builders;
 
-import com.kp.chukhnovm.hw3_1.Enums.Gender;
-import com.kp.chukhnovm.hw3_1.Student;
+import com.kp.chukhnovm.hw8.Enums.Gender;
+import com.kp.chukhnovm.hw8.Student;
 
 import java.text.DateFormat;
 import java.text.ParseException;

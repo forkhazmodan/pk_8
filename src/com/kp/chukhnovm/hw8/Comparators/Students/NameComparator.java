@@ -1,6 +1,6 @@
-package com.kp.chukhnovm.hw3_1.Comparators.Students;
+package com.kp.chukhnovm.hw8.Comparators.Students;
 
-import com.kp.chukhnovm.hw3_1.Student;
+import com.kp.chukhnovm.hw8.Student;
 
 import java.util.Comparator;
 

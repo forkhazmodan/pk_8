@@ -1,7 +1,7 @@
-package com.kp.chukhnovm.hw3_1;
+package com.kp.chukhnovm.hw8;
 
-import com.kp.chukhnovm.hw3_1.Enums.Gender;
-import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
+import com.kp.chukhnovm.hw8.Enums.Gender;
+import com.kp.chukhnovm.hw8.Interfaces.CsvCompatible;
 
 import java.util.*;
 

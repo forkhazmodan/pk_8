@@ -1,11 +1,11 @@
-package com.kp.chukhnovm.hw3_1.Enums;
+package com.kp.chukhnovm.hw8.Enums;
 
-public enum SortOrder {
-    ASC("Ascending"), DESC("Descending");
+public enum Gender {
+    MALE("Male"), FEMALE("Female");
 
     private final String description;
 
-    private SortOrder(String description) {
+    private Gender(String description) {
         this.description = description;
     }
 
@@ -15,7 +15,7 @@ public enum SortOrder {
 
     @Override
     public String toString() {
-        return "SortOrder{" +
+        return "Gender{" +
                 "description='" + description + '\'' +
                 '}';
     }

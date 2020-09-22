@@ -1,7 +1,7 @@
-package com.kp.chukhnovm.hw3_1.Directors;
+package com.kp.chukhnovm.hw8.Directors;
 
-import com.kp.chukhnovm.hw3_1.Builders.StudentBuilder;
-import com.kp.chukhnovm.hw3_1.Student;
+import com.kp.chukhnovm.hw8.Builders.StudentBuilder;
+import com.kp.chukhnovm.hw8.Student;
 
 import java.util.Scanner;
 

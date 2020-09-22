@@ -1,13 +1,13 @@
-package com.kp.chukhnovm.hw3_1;
+package com.kp.chukhnovm.hw8;
 
-import com.kp.chukhnovm.hw3_1.Comparators.Students.NameComparator;
-import com.kp.chukhnovm.hw3_1.Enums.Gender;
-import com.kp.chukhnovm.hw3_1.Enums.SortOrder;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
-import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
-import com.kp.chukhnovm.hw3_1.Interfaces.IsMilita;
-import com.kp.chukhnovm.hw3_1.Interfaces.Voenkom;
+import com.kp.chukhnovm.hw8.Comparators.Students.NameComparator;
+import com.kp.chukhnovm.hw8.Enums.Gender;
+import com.kp.chukhnovm.hw8.Enums.SortOrder;
+import com.kp.chukhnovm.hw8.Exceptions.GroupDuplicateStudentException;
+import com.kp.chukhnovm.hw8.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw8.Interfaces.CsvCompatible;
+import com.kp.chukhnovm.hw8.Interfaces.IsMilita;
+import com.kp.chukhnovm.hw8.Interfaces.Voenkom;
 
 import java.util.ArrayList;
 import java.util.Arrays;

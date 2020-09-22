@@ -1,10 +1,10 @@
-package com.kp.chukhnovm.hw3_1;
+package com.kp.chukhnovm.hw8;
 
-import com.kp.chukhnovm.hw3_1.Directors.ScannerDirector;
-import com.kp.chukhnovm.hw3_1.Enums.Gender;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
-import com.kp.chukhnovm.hw3_1.Services.GroupService;
+import com.kp.chukhnovm.hw8.Directors.ScannerDirector;
+import com.kp.chukhnovm.hw8.Enums.Gender;
+import com.kp.chukhnovm.hw8.Exceptions.GroupDuplicateStudentException;
+import com.kp.chukhnovm.hw8.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw8.Services.GroupService;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

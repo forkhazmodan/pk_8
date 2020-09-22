@@ -1,4 +1,4 @@
-package com.kp.chukhnovm.hw3_1.Interfaces;
+package com.kp.chukhnovm.hw8.Interfaces;
 
 public interface CsvCompatible {
 

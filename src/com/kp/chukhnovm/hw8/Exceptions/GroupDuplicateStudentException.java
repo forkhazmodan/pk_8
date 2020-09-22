@@ -1,4 +1,4 @@
-package com.kp.chukhnovm.hw3_1.Exceptions;
+package com.kp.chukhnovm.hw8.Exceptions;
 
 public class GroupDuplicateStudentException extends Exception{
     public GroupDuplicateStudentException(String message) {

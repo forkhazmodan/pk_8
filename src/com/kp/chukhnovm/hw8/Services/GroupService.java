@@ -1,11 +1,11 @@
-package com.kp.chukhnovm.hw3_1.Services;
+package com.kp.chukhnovm.hw8.Services;
 
-import com.kp.chukhnovm.hw3_1.Enums.Gender;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupDuplicateStudentException;
-import com.kp.chukhnovm.hw3_1.Exceptions.GroupFulFilledException;
-import com.kp.chukhnovm.hw3_1.Group;
-import com.kp.chukhnovm.hw3_1.Interfaces.CsvCompatible;
-import com.kp.chukhnovm.hw3_1.Student;
+import com.kp.chukhnovm.hw8.Enums.Gender;
+import com.kp.chukhnovm.hw8.Exceptions.GroupDuplicateStudentException;
+import com.kp.chukhnovm.hw8.Exceptions.GroupFulFilledException;
+import com.kp.chukhnovm.hw8.Group;
+import com.kp.chukhnovm.hw8.Interfaces.CsvCompatible;
+import com.kp.chukhnovm.hw8.Student;
 
 import java.io.*;
 import java.text.ParseException;
