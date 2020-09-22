@@ -1,19 +1,22 @@
 package com.kp.chukhnovm.hw8;
 
-import com.kp.chukhnovm.hw8.Directors.ScannerDirector;
+import com.kp.chukhnovm.hw8.Containers.StackBlackList;
+import com.kp.chukhnovm.hw8.Containers.StackContainer;
 import com.kp.chukhnovm.hw8.Enums.Gender;
-import com.kp.chukhnovm.hw8.Exceptions.GroupDuplicateStudentException;
+import com.kp.chukhnovm.hw8.Exceptions.ClassInBlackListException;
 import com.kp.chukhnovm.hw8.Exceptions.GroupFulFilledException;
 import com.kp.chukhnovm.hw8.Services.GroupService;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        task1();
+        task2And3();
     }
 
     public static void task1() {
@@ -42,88 +45,35 @@ public class Main {
         }
     }
 
-    public static void hw4() {
-        ScannerDirector scDir = new ScannerDirector();
+    public static void task2And3() {
+        StackContainer sc = new StackContainer();
+        StackBlackList bk = new StackBlackList(
+            Long.class
+        );
+        sc.setBlackList(bk);
 
-        Student[] students = {
-                // Create student from scanner
-                scDir.createStudent(),
-                new Student("Valentyn Test6", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
-                new Student("Vladislav Test7", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
-                new Student("Andrew Test1", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
-                new Student("John Test2", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
-                new Student("Peter Test3", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
-                new Student("Lesya Test4", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
-                new Student("Petro Test8", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE),
-                new Student("Tesla Test9", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
-                new Student("Rocket Test10", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE),
+        try {
 
-        };
+            sc.add("dsfgsdf");
+            sc.add(2);
+            sc.add(3.00);
 
-        try{
-            Group group = new Group(students);
-            Student[] studentsArray = group.sortByLastName();
-            Student[] militia = group.getMilitia();
+            System.out.println(Arrays.toString(sc.getList())); // [3.0, 2, dsfgsdf]
+            System.out.println(sc.retrieve()); // 3.0
+            System.out.println(Arrays.toString(sc.getList())); // [2, dsfgsdf]
+            System.out.println(sc.get()); // 2
+            System.out.println(Arrays.toString(sc.getList())); // [2, dsfgsdf]
+            System.out.println(sc.retrieve()); // 2
+            System.out.println(sc.retrieve()); // dsfgsdf
+            System.out.println(Arrays.toString(sc.getList())); // []
+            System.out.println(sc.retrieve()); // null
+            System.out.println(Arrays.toString(sc.getList())); // []
 
-            for (Student student: studentsArray) {
-                System.out.println(student);
-            }
 
-            System.out.println("Militia:");
+            sc.add(3L); // class java.lang.Long in black list.
 
-            for (Student student: militia) {
-                System.out.println(student);
-            }
-
-            group.removeStudent(null);
-
-        } catch (GroupFulFilledException e) {
-            System.err.println(e.getMessage());
+        } catch (ClassInBlackListException classInBlackList) {
+            classInBlackList.printStackTrace();
         }
-
-
-
-        scDir.getSc().close();
-    }
-
-    public static void hw3() {
-
-        Student s1 = new Student("Andrew Test1", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s2 = new Student("John Test2", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
-        Student s3 = new Student("Peter Test3", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s4 = new Student("Lesya Test4", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
-        Student s5 = new Student("Dmitry Test5", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s6 = new Student("Valentyn Test6", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
-        Student s7 = new Student("Vladislav Test7", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s8 = new Student("Petro Test8", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
-        Student s9 = new Student("Tesla Test9", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s10 = new Student("Rocket Test10", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE);
-        Student s11 = new Student("Test11 Test11", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE);
-
-        Group group = new Group();
-        int index = 0;
-        for (Student student : new Student[]{s1, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11}) {
-
-            try {
-                System.out.printf("\nTry add %s student", ++index);
-                group.setStudent(student);
-                System.out.printf(" => %s", "Success");
-            } catch (GroupDuplicateStudentException | GroupFulFilledException e) {
-                System.out.printf(" => Skip (%s)", e.getMessage());
-            }
-        }
-
-        System.out.println("\n");
-        System.out.println(group.toString());
-
-        System.out.println("Searching by last name:");
-        Student[] searchResult = group.searchStudent("Test1");
-
-        for (Student student : searchResult) {
-            System.out.println(student);
-        }
-
-        group.removeStudent(s1);
-        System.out.println(group.toString());
     }
 }
