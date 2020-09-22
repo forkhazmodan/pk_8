@@ -6,18 +6,40 @@ import com.kp.chukhnovm.hw8.Exceptions.GroupDuplicateStudentException;
 import com.kp.chukhnovm.hw8.Exceptions.GroupFulFilledException;
 import com.kp.chukhnovm.hw8.Services.GroupService;
 
+import java.io.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Main {
 
     public static void main(String[] args) {
-        Main.hw5();
+
     }
 
-    public static void hw5() {
-        Group group = GroupService.exportGroup("import.csv");
-        GroupService.importGroup(group, String.format("export-%d.csv", System.currentTimeMillis()));
+    public static void task1() {
+        Student[] students = {
+                new Student("Valentyn Test6", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE, "1"),
+                new Student("Vladislav Test7", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE, "2"),
+                new Student("Andrew Test1", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE, "3"),
+                new Student("John Test2", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE, "4"),
+                new Student("Peter Test3", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE, "5"),
+                new Student("Lesya Test4", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE, "6"),
+                new Student("Petro Test8", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.FEMALE, "7"),
+                new Student("Tesla Test9", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE, "8"),
+                new Student("Rocket Test10", new GregorianCalendar(1990, Calendar.JUNE, 5).getTime(), Gender.MALE, "9"),
+        };
+
+
+        try {
+            Group group = new Group(students);
+            String filename = GroupService.serializeToFile(group);
+            Group group2 = GroupService.unserializeFromFile(filename);
+
+            System.out.println(group.equals(group2));
+
+        } catch (GroupFulFilledException | IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void hw4() {

@@ -9,12 +9,14 @@ import com.kp.chukhnovm.hw8.Interfaces.CsvCompatible;
 import com.kp.chukhnovm.hw8.Interfaces.IsMilita;
 import com.kp.chukhnovm.hw8.Interfaces.Voenkom;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Group implements Voenkom, CsvCompatible {
+public class Group implements Voenkom, CsvCompatible, Serializable, Cloneable {
 
+    private static final long serialVersionUID = 1L;
     private final int maxLength = 10;
 
     private Student[] students = new Student[maxLength];
@@ -178,20 +180,28 @@ public class Group implements Voenkom, CsvCompatible {
 
     @Override
     public String toString() {
-        // Sort students by name
-        //TODO: implement selection sorting
-
-        StringBuilder strB = new StringBuilder();
-        for (Student student : this.getStudents()) {
-            strB.append("\n");
-            strB.append(student);
-        }
-
-        String studentsString = strB.toString();
-
         return "Group{" +
-                "students=[" + studentsString + "]" +
+                "maxLength=" + maxLength +
+                ", students=" + Arrays.toString(this.getStudents()) +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Group group = (Group) o;
+
+        if (maxLength != group.maxLength) return false;
+        // Probably incorrect - comparing Object[] arrays with Arrays.equals
+        return Arrays.equals(getStudents(), group.getStudents());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = maxLength;
+        result = 31 * result + Arrays.hashCode(getStudents());
+        return result;
+    }
 }

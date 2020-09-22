@@ -2,6 +2,7 @@ package com.kp.chukhnovm.hw8;
 
 import com.kp.chukhnovm.hw8.Enums.Gender;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,8 +11,9 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class Human implements Comparable<Human> {
+public class Human implements Comparable<Human>, Serializable {
 
+    private static final long serialVersionUID = 1L;
     protected String name;
     protected Date birthDay;
     protected Gender gender;
@@ -86,14 +88,15 @@ public class Human implements Comparable<Human> {
         LocalDate bd = this.getBirthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate now = LocalDate.now();
 
-       return Period.between(bd, now).getYears();
+        return Period.between(bd, now).getYears();
     }
 
     @Override
     public String toString() {
         return "Human{" +
-                "name='" + this.name + '\'' +
-                ", dayBirth=" + this.birthDay +
+                "name='" + name + '\'' +
+                ", birthDay=" + birthDay +
+                ", gender=" + gender +
                 '}';
     }
 

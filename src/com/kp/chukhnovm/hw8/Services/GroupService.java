@@ -98,4 +98,30 @@ public class GroupService {
         }
 
     }
+
+    public static String serializeToFile(Group group) throws IOException {
+
+        String fileName = group.getClass() + "-" + group.hashCode();
+        try(ObjectOutputStream OOS=new ObjectOutputStream(new FileOutputStream(fileName))){
+            OOS.writeObject(group);
+        } catch(IOException e){
+            throw e;
+        }
+
+        return fileName;
+    }
+
+    public static Group unserializeFromFile(String fileName) throws IOException, ClassNotFoundException {
+
+        Group group = null;
+
+        try (ObjectInputStream OIS=new ObjectInputStream(new FileInputStream(fileName))){
+            group=(Group)OIS.readObject();
+        }
+        catch(IOException | ClassNotFoundException e){
+            throw e;
+        }
+
+        return group;
+    }
 }

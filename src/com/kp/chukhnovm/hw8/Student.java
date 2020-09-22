@@ -3,10 +3,12 @@ package com.kp.chukhnovm.hw8;
 import com.kp.chukhnovm.hw8.Enums.Gender;
 import com.kp.chukhnovm.hw8.Interfaces.CsvCompatible;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Student extends Human implements CsvCompatible {
+public class Student extends Human implements CsvCompatible, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String documentId;
 
     /*
